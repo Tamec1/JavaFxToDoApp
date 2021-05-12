@@ -1,3 +1,3 @@
-# Demo Project README
+# JavaFX Exercise
 
-This is a simple README file
+My solution of the Java Masterclass ToDoListApp exercise
