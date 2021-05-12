@@ -48,25 +48,6 @@ public class Controller {
     private Predicate<TodoItem> wantTodaysItems;
 
     public void initialize() {
-//        TodoItem item1 = new TodoItem("Mail Card", "Buy a Card for Jenny",
-//                LocalDate.of(2016, Month.APRIL, 25));
-//        TodoItem item2 = new TodoItem("Dentist appointment", "See Dr.Shepard at 123 Main street",
-//                LocalDate.of(2016, Month.MAY, 23));
-//        TodoItem item3 = new TodoItem("Finish design proposal", "I promised I'd email website mockups",
-//                LocalDate.of(2016, Month.APRIL, 22));
-//        TodoItem item4 = new TodoItem("Pickup Doug from main station", "Dougs arriving on March 23",
-//                LocalDate.of(2016, Month.MARCH, 23));
-//        TodoItem item5 = new TodoItem("Pick Up clothes from cleaning", "Clothes should be ready at Wednesday",
-//                LocalDate.of(2016, Month.APRIL, 20));
-//
-//        todoItems = new ArrayList<TodoItem>();
-//        todoItems.add(item1);
-//        todoItems.add(item2);
-//        todoItems.add(item3);
-//        todoItems.add(item4);
-//        todoItems.add(item5);
-//
-//        TodoData.getInstance().setTodoItems(todoItems);
         listContextMenu = new ContextMenu();
         MenuItem deleteMenuItem = new MenuItem("Delete");
         deleteMenuItem.setOnAction(new EventHandler<ActionEvent>() {
@@ -105,7 +86,6 @@ public class Controller {
         };
 
         filteredList = new FilteredList<TodoItem>(TodoData.getInstance().getTodoItems(), wantAllItems);
-
         SortedList<TodoItem> sortedList = new SortedList<TodoItem>(filteredList,
                 new Comparator<TodoItem>() {
                     @Override
@@ -114,7 +94,6 @@ public class Controller {
                     }
                 });
 
-//        todoListView.setItems(TodoData.getInstance().getTodoItems());
         todoListView.setItems(sortedList);
         todoListView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         todoListView.getSelectionModel().selectFirst();
@@ -209,11 +188,6 @@ public class Controller {
         }
     }
 
-    @FXML
-    public void closeApplication() {
-        Platform.exit();
-    }
-
     public void handleFilterButton() {
         TodoItem selectedItem = todoListView.getSelectionModel().getSelectedItem();
         if (filterToggleButton.isSelected()) {
@@ -230,5 +204,10 @@ public class Controller {
             filteredList.setPredicate(wantAllItems);
             todoListView.getSelectionModel().select(selectedItem);
         }
+    }
+
+    @FXML
+    public void closeApplication() {
+        Platform.exit();
     }
 }
